@@ -29,3 +29,4 @@ if __name__ == "__main__":
     df = pd.read_csv(train_file)
     df['bed_count'] = df['comments'].apply(convert_sentence_to_counts)
 
+hello world how are you
