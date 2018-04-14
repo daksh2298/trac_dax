@@ -17,7 +17,7 @@ from nltk.classify.scikitlearn import SklearnClassifier
 import nltk
 # from matplotlib import pyplot as plt
 
-# this takes train data from the file agr_en_dev.csv
+# this takes train data from the file agr_en_train.csv
 df_train = pd.read_csv('agr_en_train.csv', sep=',', names=['id', 'comment', 'category'])
 
 df_train.loc[df_train["category"] == 'NAG', "category", ] = 0
