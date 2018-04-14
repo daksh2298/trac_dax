@@ -18,7 +18,7 @@ import nltk
 # from matplotlib import pyplot as plt
 
 # this takes train data from the file agr_en_dev.csv
-df_train = pd.read_csv('agr_en_dev.csv', sep=',', names=['id', 'comment', 'category'])
+df_train = pd.read_csv('agr_en_train.csv', sep=',', names=['id', 'comment', 'category'])
 
 df_train.loc[df_train["category"] == 'NAG', "category", ] = 0
 df_train.loc[df_train["category"] == 'CAG', "category", ] = 1
@@ -29,6 +29,18 @@ df_train_y = df_train["category"]
 
 # google train_test_split() to understand the functionality of train_test_split()
 x_train, x_test_ignore, y_train, y_test_ignore = train_test_split(df_train_x, df_train_y, test_size=0.0, random_state=4)
+# THIS PART MUST BE TESTED ONCE
+# df_train = pd.read_csv('agr_en_train.csv', sep=',', names=['id', 'comment', 'category'])
+
+# df_train.loc[df_train["category"] == 'NAG', "category", ] = 0
+# df_train.loc[df_train["category"] == 'CAG', "category", ] = 1
+# df_train.loc[df_train["category"] == 'OAG', "category", ] = 2
+
+# df_train_x = df_train["comment"]
+# df_train_y = df_train["category"]
+
+# # google train_test_split() to understand the functionality of train_test_split()
+# x_train, x_test, y_train, y_test = train_test_split(df_train_x, df_train_y, test_size=0.0, random_state=4)
 
 # this takes test data from the file agr_en_dev.csv
 df_test = pd.read_csv('agr_en_dev.csv', sep=',', names=['id', 'comment', 'category'])
@@ -40,7 +52,7 @@ df_test.loc[df_test["category"] == 'OAG', "category", ] = 2
 df_test_x = df_test["comment"]
 df_test_y = df_test["category"]
 
-x_train_ignore, x_test, y_train_ignore, y_test = train_test_split(df_test_x, df_test_y, test_size=0.999999, random_state=4)
+x_train_ignore, x_test, y_train_ignore, y_test = train_test_split(df_test_x, df_test_y, test_size=0.99999, random_state=4)
 
 # TfidfVectorizer is used to determine the frequency of the word in the document
 cv1 = TfidfVectorizer(min_df=1, stop_words='english')
@@ -70,7 +82,7 @@ a = np.array(y_test)
 
 count_mnb = 0
 
-b = np.array(df_test_x)
+#b = np.array(df_test_x)
 for i in range(len(predictions_mnb)):
     if predictions_mnb[i] == a[i]:
         count_mnb = count_mnb + 1
